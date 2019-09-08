@@ -65,6 +65,9 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *calendar[] = {"st", "-e", "calcurse", NULL};
 static const char *mus_player[] = {"st", "-e", "cmus", NULL};
 static const char *file_manager[] = {"st", "-e", "ranger", NULL};
+static const char *text_editor[] = {"st", "-e", "nvim", NULL};
+static const char *navigator[] = {"surf", "ddg.gg", NULL};
+static const char *password_manager[] = {"passmenu", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -73,6 +76,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_k,      spawn,	   {.v = calendar} },
 	{ MODKEY|ShiftMask,		XK_m,      spawn,	   {.v = mus_player} },
 	{ MODKEY|ShiftMask,		XK_f,      spawn,	   {.v = file_manager} },
+	{ MODKEY|ShiftMask,		XK_i,      spawn,	   {.v = navigator} },
+	{ MODKEY|ShiftMask,		XK_v,      spawn,	   {.v = text_editor} },
+	{ MODKEY|ShiftMask,		XK_s,      spawn,	   {.v = password_manager} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
