@@ -17,10 +17,11 @@ static const char col_gray2[]       = "#3c3836";
 static const char col_gray3[]       = "#d5c4a1";
 static const char col_gray4[]       = "#fbf1c7";
 static const char col_cyan[]        = "#161819";
+static const char col_border[]      = "#458588";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_border  },
 };
 
 /* tagging */
@@ -33,12 +34,13 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 9,       0,           -1 },
-	{ "Brave",    NULL,       NULL,       1 << 9,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Brave",    NULL,       NULL,       1 << 8,       0,           -1 },
 	{ "Steam",    NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Signal",   NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Telegram", NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Rambox",   NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Signal",   NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "Telegram", NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "Rambox",   NULL,       NULL,       1 << 6,       0,           -1 },
+	{ "st",       "floating", NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -76,8 +78,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|Mod1Mask,              XK_h,      incrgaps,       {.i = +1 } },
