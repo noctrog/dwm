@@ -3,6 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
+static const int swallowfloating    = 0;       /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 8;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 8;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 8;       /* horiz outer gap between windows and screen edge */
@@ -32,15 +33,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Brave",    NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Steam",    NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Signal",   NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Telegram", NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "Rambox",   NULL,       NULL,       1 << 6,       0,           -1 },
-	{ "st",       "floating", NULL,       0,            1,           -1 },
+	/* class     instance  title                tags mask     isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",     NULL,       NULL,             0,            1,          0,          0,         -1 },
+	{ "Firefox",  NULL,       NULL,             1 << 8,       0,          0,          0,           -1 },
+	{ "Brave",    NULL,       NULL,             1 << 8,       0,          0,          0,           -1 },
+	{ "Steam",    NULL,       NULL,             1 << 6,       0,          0,          0,           -1 },
+	{ "Signal",   NULL,       NULL,             1 << 6,       0,          0,          0,           -1 },
+	{ "Telegram", NULL,       NULL,             1 << 6,       0,          0,          0,           -1 },
+	{ "Rambox",   NULL,       NULL,             1 << 6,       0,          0,          0,           -1 },
+	{ "st",       NULL,       NULL,             0,            1,          1,          0,           -1 },
+	{ "st",       "floating", NULL,             0,            1,          1,          0,           -1 },
+	{ NULL,       NULL,       "Event Tester",   0,            0,          0,          1,           -1 },
 };
 
 /* layout(s) */
