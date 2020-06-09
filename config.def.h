@@ -76,7 +76,7 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *scriptselector[] = { "script_selector", NULL };
 static const char *passcmd[] = { "passmenu", NULL };
 static const char *musiccmd[] = { "st", "-e", "ncmpcpp", NULL };
-static const char *mixercmd[] = { "st", "-n", "floating", "-e", "pulsemuxer", NULL };
+static const char *mixercmd[] = { "st", "-n", "floating", "-e", "pulsemixer", NULL };
 static const char *calendarcmd[] = {"st", "-e", "calcurse", NULL};
 
 static Key keys[] = {
