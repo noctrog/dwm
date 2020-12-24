@@ -76,8 +76,9 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *scriptselector[] = { "script_selector", NULL };
 static const char *passcmd[] = { "passmenu", NULL };
 static const char *musiccmd[] = { "st", "-e", "ncmpcpp", NULL };
-static const char *mixercmd[] = { "st", "-n", "floating", "-e", "alsamixer", NULL };
+static const char *mixercmd[] = { "st", "-n", "floating", "-e", "pulsemixer", NULL };
 static const char *calendarcmd[] = {"st", "-e", "calcurse", NULL};
+static const char *emacscommand[] = {"emacsclient", "-nc", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -125,6 +126,7 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,              XK_m,      spawn,          {.v = musiccmd} },
     { MODKEY|Mod1Mask,              XK_v,      spawn,          {.v = mixercmd} },
     { MODKEY|Mod1Mask,              XK_c,      spawn,          {.v = calendarcmd} },
+    { MODKEY|Mod1Mask,              XK_x,      spawn,          {.v = emacscommand} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
