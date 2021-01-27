@@ -11,8 +11,8 @@ static const unsigned int gappov    = 8;       /* vert outer gap between windows
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "IBM Plex Mono:size=10" };
-static const char dmenufont[]       = "IBM Plex Mono:size=10";
+static const char *fonts[]          = { "Monospace:size=10" };
+static const char dmenufont[]       = "Monospace:size=10";
 static const char col_gray1[]       = "#161819";
 static const char col_gray2[]       = "#3c3836";
 static const char col_gray3[]       = "#d5c4a1";
@@ -61,10 +61,10 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -79,11 +79,13 @@ static const char *musiccmd[] = { "st", "-e", "ncmpcpp", NULL };
 static const char *mixercmd[] = { "st", "-n", "floating", "-e", "pulsemixer", NULL };
 static const char *calendarcmd[] = {"st", "-e", "calcurse", NULL};
 static const char *emacscommand[] = {"emacsclient", "-nc", NULL};
+static const char *brightness_up[]  =   { "xbacklight", "-inc", "10", NULL };
+static const char *brightness_down[]  =   { "xbacklight", "-dec", "10", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-    { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -91,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-    // { MODKEY|Mod1Mask,              XK_h,      incrgaps,       {.i = +1 } },
+	// { MODKEY|Mod1Mask,              XK_h,      incrgaps,       {.i = +1 } },
 	// { MODKEY|Mod1Mask,              XK_l,      incrgaps,       {.i = -1 } },
 	// { MODKEY|Mod1Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } },
 	// { MODKEY|Mod1Mask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } },
@@ -121,22 +123,24 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-    { MODKEY,                       XK_d,      spawn,          {.v = scriptselector} },
-    { MODKEY,                       XK_s,      spawn,          {.v = passcmd} },
-    { MODKEY|Mod1Mask,              XK_m,      spawn,          {.v = musiccmd} },
-    { MODKEY|Mod1Mask,              XK_v,      spawn,          {.v = mixercmd} },
-    { MODKEY|Mod1Mask,              XK_c,      spawn,          {.v = calendarcmd} },
-    { MODKEY|Mod1Mask,              XK_x,      spawn,          {.v = emacscommand} },
+	{ MODKEY,                       XK_d,      spawn,          {.v = scriptselector} },
+	{ MODKEY,                       XK_s,      spawn,          {.v = passcmd} },
+	{ MODKEY|Mod1Mask,              XK_m,      spawn,          {.v = musiccmd} },
+	{ MODKEY|Mod1Mask,              XK_v,      spawn,          {.v = mixercmd} },
+	{ MODKEY|Mod1Mask,              XK_c,      spawn,          {.v = calendarcmd} },
+	{ MODKEY|Mod1Mask,              XK_x,      spawn,          {.v = emacscommand} },
+	{ Mod1Mask,			XK_Up,   spawn, {.v = brightness_up } },
+	{ Mod1Mask, 			XK_Down,   spawn, {.v = brightness_down } },
 	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+		TAGKEYS(                        XK_2,                      1)
+		TAGKEYS(                        XK_3,                      2)
+		TAGKEYS(                        XK_4,                      3)
+		TAGKEYS(                        XK_5,                      4)
+		TAGKEYS(                        XK_6,                      5)
+		TAGKEYS(                        XK_7,                      6)
+		TAGKEYS(                        XK_8,                      7)
+		TAGKEYS(                        XK_9,                      8)
+		{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
